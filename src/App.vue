@@ -1,81 +1,56 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+export default {
+  data() {
+    return {
+      message: "Hello World!",
+      time: new Date().toLocaleString(),
+    };
+  },
+  methods: {
+    splitString() {
+      if (typeof this.message !== "string") return;
+      this.message = this.message.split(""); // string to array
+    },
+    reverseArray() {
+      if (!Array.isArray(this.message)) return;
+      this.message = this.message.reverse(); // reverse array
+    },
+    joinArray() {
+      if (!Array.isArray(this.message)) return;
+      this.message = this.message.join(""); // array to string
+    },
+    alertMessage() {
+      alert("안녕");
+    },
+    appendBang() {
+      if (Array.isArray(this.message)) return;
+      this.message += "!";
+    },
+    notify() {
+      alert("navigation was prevented.");
+    },
+  },
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <span v-bind:title="time">
+      여기에 마우스를 올려두고 잠시 기다리면 제목이 동적으로 바뀝니다!
+    </span>
+  </div>
+  <div>
+    <h1>{{ message }}</h1>
+    <input v-model="message" />
+  </div>
+  <div><button @click="splitString">문자열을 배열로</button></div>
+  <div><button @click="reverseArray">배열 뒤집기</button></div>
+  <div><button @click="joinArray">배열을 문자열로</button></div>
+  <div><button @click="alertMessage">안녕</button></div>
+  <div><button @click="appendBang">Append "!"</button></div>
+  <div>
+    <a href="https://vuejs.org" @click.prevent="notify">
+      A link with e.preventDefault()
+    </a>
+  </div>
 </template>
-
-<style>
-@import './assets/base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-}
-</style>
