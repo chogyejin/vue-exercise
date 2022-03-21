@@ -28,3 +28,12 @@ Refer to
   - `@click.prevent`와 같이 common tasks를 수정하기도 한다.
 - Two way Binding
   - `v-model` directive로 input 태그 입력과 앱 상태를 양방향 바인딩 가능
+
+## Conditionals and Loops
+
+- number property를 가지고 있는 object list를 이용하여 toggle, push, pop, reverse
+- 조건문
+  - `v-if`, `v-else-if`, `v-else`
+- 반복문
+  - `v-for`, `v-bind:key`
+- Vue 엘리먼트가 Vue에 삽입/업데이트/제거될 때 자동으로 전환 효과(transition effects)가 적용된다.
