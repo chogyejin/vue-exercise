@@ -28,6 +28,9 @@ Refer to
   - `@click.prevent`와 같이 common tasks를 수정하기도 한다.
 - Two way Binding
   - `v-model` directive로 input 태그 입력과 앱 상태를 양방향 바인딩 가능
+    - Form 요소(input-label, select)와 데이터 바인딩
+    - label 태그의 for 속성은 input의 id 속성과 연결된다.
+    - 다중 체크박스의 v-model directive는 같은 값으로 관리, value는 Checked names 배열에 들어갈 값
 
 ## Conditionals and Loops
 
