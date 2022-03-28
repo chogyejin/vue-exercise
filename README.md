@@ -11,7 +11,10 @@ Refer to
 2. Execute on VSCode : `cd <project-nane>`, `code .`
 3. Run the project : `npm run dev`
 
-- Vetur extension 설치
+_Extensions_
+
+- Vetur
+- Vue Language Features (Volar)
 
 ## Handling User Input
 
@@ -40,3 +43,13 @@ Refer to
 - 반복문
   - `v-for`, `v-bind:key`
 - Vue 엘리먼트가 Vue에 삽입/업데이트/제거될 때 자동으로 전환 효과(transition effects)가 적용된다.
+
+## Simple Component
+
+- 애플리케이션을 작고 독립적인 컴포넌트를 활용하여 구성
+- 부모 영역의 데이터를 자식 영역에게 전달
+  1. App.vue에서 components 옵션에 TodoItem 객체 정의
+  2. 데이터들을 `<TodoItem></TodoItem>` 태그에서 prop으로 넘김
+     - todoList는 객체들이 모인 배열
+     - 데이터(item)를 전달만 하고 자식 컴포넌트에서 사용함, `<li>{{ todo.text }}</li>`
+  3. TodoItem.vue에서 props 옵션으로 item 객체 받아서 사용
