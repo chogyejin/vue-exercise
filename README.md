@@ -53,3 +53,21 @@ _Extensions_
      - todoList는 객체들이 모인 배열
      - 데이터(item)를 전달만 하고 자식 컴포넌트에서 사용함, `<li>{{ todo.text }}</li>`
   3. TodoItem.vue에서 props 옵션으로 item 객체 받아서 사용
+
+## Markdown Editor
+
+- 마크다운 에디터
+  ```html
+  <!-- without debouncing -->
+  <!-- <textarea
+    class="input"
+    :value="input"
+    @input="input = $event.target.value">
+  </textarea> -->
+  <textarea class="input" :value="input" @input="update"></textarea>
+  <div class="output" v-html="output"></div>
+  ```
+  - textarea의 input value를 0.1초 단위로 묶어서 디바운싱하여 update 후 오른쪽 div에 출력
+  - `npm i lodash-es` : lodash 패키지의 debouce() 함수 이용
+  - `npm i marked` : marked 패키지의 marked() 함수 이용하여 data의 input을 태그 형태로 변경 후 `output`으로 return
+    - `v-html` directive로 태그 문자열을 파싱하여 화면에 나타냄, 이 directive는 XSS 공격에 취약
