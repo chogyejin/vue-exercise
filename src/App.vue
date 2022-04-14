@@ -1,31 +1,63 @@
 <!--
-Here we show the simplest possible component which accepts a prop and renders it.
-Learn more about components in the guide!
+A simple markdown editor.
 -->
 
 <script>
-import TodoItem from "./components/TodoItem.vue";
+import { marked } from "marked";
+import { debounce } from "lodash-es";
 
 export default {
-  components: {
-    TodoItem,
+  data: () => ({
+    input: "",
+  }),
+  computed: {
+    output() {
+      console.log(marked("# aa"));
+      return marked(this.input);
+    },
   },
-  data() {
-    return {
-      todoList: [
-        { id: 0, text: "과제 1" },
-        { id: 1, text: "영화 보기" },
-        { id: 2, text: "산책하기" },
-      ],
-    };
+  methods: {
+    update: debounce(function (e) {
+      this.input = e.target.value;
+    }, 100),
   },
 };
 </script>
 
 <template>
-  <h2>할 일 목록</h2>
-  <ol>
-    <!-- v-bind 생략한 형태로 적음 -->
-    <TodoItem v-for="item in todoList" :todo="item" :key="item.id"></TodoItem>
-  </ol>
+  <div class="editor">
+    <textarea class="input" :value="input" @input="update"></textarea>
+    <div class="output" v-html="output"></div>
+  </div>
 </template>
+
+<style>
+body {
+  margin: 0;
+}
+
+.editor {
+  height: 100vh;
+  display: flex;
+}
+
+.input,
+.output {
+  overflow: auto;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.input {
+  border: none;
+  border-right: 1px solid #ccc;
+  resize: none;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-family: "Monaco", courier, monospace;
+  padding: 20px;
+}
+</style>
